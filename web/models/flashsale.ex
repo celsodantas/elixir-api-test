@@ -15,8 +15,8 @@ defmodule FrenzyApi.Flashsale do
       join: fp in assoc(f, :flashsale_products),
       join: p in FrenzyApi.Product, on: fp.product_id == p.id,
       where: f.password == ^password,
-      select: p
-    # FrenzyApi.Product |> where([p], p.id == 1) |> FrenzyApi.Repo.all
+      select: p,
+      preload: [:variants]
   end
 
   @doc """

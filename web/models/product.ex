@@ -1,11 +1,13 @@
 defmodule FrenzyApi.Product do
   use FrenzyApi.Web, :model
 
-  @derive {Poison.Encoder, only: [:title, :vendor]}
+  @derive {Poison.Encoder, only: [:title, :vendor, :variants]}
 
   schema "products" do
     field :title, :string
     field :vendor, :string
+
+    has_many :variants, FrenzyApi.Variant
   end
 
   @doc """
