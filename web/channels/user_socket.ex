@@ -34,4 +34,8 @@ defmodule FrenzyApi.UserSocket do
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil
+
+  ## Transports
+  transport :websocket, Phoenix.Transports.WebSocket,
+    timeout: 45_000
 end
