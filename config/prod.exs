@@ -65,7 +65,9 @@ config :logger, level: :info
 config :frenzy_api, FrenzyApi.Repo,
   adapter: Ecto.Adapters.MySQL,
   url: System.get_env("DB_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  ssl: true,
+  ssl_opts: [cacertfile: "rds-combined-ca-bundle.pem"]
 
 config :exq,
   name: Exq,
