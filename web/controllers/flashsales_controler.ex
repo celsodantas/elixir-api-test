@@ -9,7 +9,7 @@ defmodule FrenzyApi.FlashsalesController do
   end
 
   def products(conn, %{"password" => password}) do
-    products = Flashsale |> Flashsale.products(password) |> Repo.all
+    products = FrenzyApi.Product |> Flashsale.products(password) |> Repo.all
     render conn, products: products
   end
 end

@@ -1,7 +1,7 @@
 defmodule FrenzyApi.Variant do
   use FrenzyApi.Web, :model
 
-  @derive {Poison.Encoder, only: [:title, :price, :position, :weight, :weight_unit, :inventory_quantity]}
+  @derive {Poison.Encoder, only: [:title, :price, :position, :weight, :weight_unit, :inventory_quantity, :option_values]}
 
   schema "variants" do
     field :product_id, :integer

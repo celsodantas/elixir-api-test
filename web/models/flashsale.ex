@@ -11,12 +11,12 @@ defmodule FrenzyApi.Flashsale do
   end
 
   def products(query, password) do
-    from f in query,
-      join: fp in assoc(f, :flashsale_products),
-      join: p in FrenzyApi.Product, on: fp.product_id == p.id,
+    from p in query,
+      join: fp in assoc(p, :flashsale_products),
+      join: f in FrenzyApi.Flashsale, on: fp.flashsale_id == f.id,
       where: f.password == ^password,
       select: p,
-      preload: [:variants]
+      preload: [:variants, :options]
   end
 
   @doc """
