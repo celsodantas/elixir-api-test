@@ -70,7 +70,7 @@ config :frenzy_api, FrenzyApi.Repo,
 
 config :exq,
   name: Exq,
-  url: System.get_env("REDISCLOUD_URL")
+  url: System.get_env("REDISCLOUD_URL"),
   namespace: "exq",
   concurrency: :infinite,
   queues: ["default"],
