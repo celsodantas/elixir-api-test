@@ -70,10 +70,7 @@ config :frenzy_api, FrenzyApi.Repo,
 
 config :exq,
   name: Exq,
-  host: System.get_env("REDIS_HOST"),
-  username: System.get_env("REDIS_USER"),
-  password: System.get_env("REDIS_PASSWORD"),
-  port: System.get_env("REDIS_PORT"),
+  url: System.get_env("REDISCLOUD_URL")
   namespace: "exq",
   concurrency: :infinite,
   queues: ["default"],
@@ -82,4 +79,3 @@ config :exq,
   scheduler_enable: true,
   max_retries: 25,
   shutdown_timeout: 5000
-
