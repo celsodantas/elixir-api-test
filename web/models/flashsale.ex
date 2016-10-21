@@ -7,12 +7,15 @@ defmodule FrenzyApi.Flashsale do
     field :password, :string
 
     has_many :flashsale_products, FrenzyApi.FlashsaleProduct
+    has_many :products, FrenzyApi.Product
   end
 
   def products(query, password) do
     from f in query,
       join: fp in assoc(f, :flashsale_products),
-      where: fp.flashsale_id == f.id and f.password == ^password
+      join: p in FrenzyApi.Product, on: fp.product_id == p.id,
+      where: f.password == ^password,
+      select: p
     # FrenzyApi.Product |> where([p], p.id == 1) |> FrenzyApi.Repo.all
   end
 
