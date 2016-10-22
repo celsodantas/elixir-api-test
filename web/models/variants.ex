@@ -1,3 +1,25 @@
+defmodule FrenzyApi.VariantYAML do
+  @behaviour Ecto.Type
+
+  def type do
+   :json
+  end
+
+  def cast(value) do
+    {:ok, value}
+  end
+
+  def blank?(_), do: false
+
+  def load(value) do
+    parsed = Regex.named_captures(~r/.*id: (?<id>\d*).*\n.*value: (?<value>.*).*\n?/, value)
+    {:ok, parsed}
+  end
+
+  def dump(value) do
+    {:ok, value}
+  end
+end
 defmodule FrenzyApi.Variant do
   use FrenzyApi.Web, :model
 
@@ -15,7 +37,8 @@ defmodule FrenzyApi.Variant do
     field :inventory_quantity, :integer
     field :inventory_policy, :string
     field :shopify_variant_id, :integer
-    field :option_values, :string
+
+    field :option_values, FrenzyApi.VariantYAML
   end
 
   @doc """
